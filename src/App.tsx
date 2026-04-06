@@ -18,6 +18,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
+  ConfigCard,
   Separator,
   ScrollFade,
   Tabs,
@@ -86,6 +87,9 @@ import {
   Layers,
   Send,
   Palette,
+  Store,
+  Globe,
+  MessageCircle,
 } from "lucide-react";
 
 // --- Color presets ---
@@ -307,7 +311,7 @@ export default function App() {
             Loce Design System
           </Text>
           <Text variant="subtitle" className="mt-3 text-neutral-500">
-            43 componentes React com Tailwind CSS v4. Plug and play, dark mode,
+            44 componentes React com Tailwind CSS v4. Plug and play, dark mode,
             whitelabel-ready.
           </Text>
           <div className="flex items-center gap-3 mt-6">
@@ -589,7 +593,7 @@ export default function App() {
         </Section>
 
         {/* ==================== LAYOUT ==================== */}
-        <Section id="layout" title="Layout" count={4}>
+        <Section id="layout" title="Layout" count={5}>
           {/* Card */}
           <Demo
             title="Card"
@@ -628,6 +632,40 @@ export default function App() {
                   </p>
                 </CardContent>
               </Card>
+            </div>
+          </Demo>
+
+          {/* ConfigCard */}
+          <Demo
+            title="ConfigCard"
+            description="Card de secao para paginas de configuracao — icon, title, description, children"
+            bare
+          >
+            <div className="flex flex-col gap-4">
+              <ConfigCard
+                icon={Store}
+                title="Identidade da loja"
+                description="Informacoes basicas e imagens da sua marca"
+              >
+                <Input label="Nome do site" placeholder="Minha Loja" />
+                <Input label="Descricao" placeholder="Uma breve descricao..." />
+              </ConfigCard>
+              <ConfigCard
+                icon={MessageCircle}
+                title="Conversas"
+                description="Acoes automaticas durante as conversas"
+              >
+                <Switch label="Responder automaticamente" description="A IA responde mensagens sem intervencao humana" />
+                <Switch label="Gerar sugestoes automaticas" description="Sugere respostas para voce aprovar antes de enviar" />
+              </ConfigCard>
+              <ConfigCard
+                icon={Globe}
+                title="SEO"
+                description="Como sua loja aparece no Google"
+              >
+                <Input label="Titulo SEO" placeholder="Titulo da pagina" />
+                <Textarea label="Meta descricao" placeholder="Descricao para mecanismos de busca..." />
+              </ConfigCard>
             </div>
           </Demo>
 
@@ -1367,7 +1405,7 @@ export default function App() {
         <footer className="border-t border-neutral-200 dark:border-neutral-800 pt-8 mt-8">
           <div className="flex items-center justify-between">
             <Text variant="description" className="text-neutral-400">
-              Loce Design System v0.2.4 — 43 componentes
+              Loce Design System v0.2.4 — 44 componentes
             </Text>
             <div className="flex items-center gap-2">
               <Text variant="description" className="text-neutral-400">

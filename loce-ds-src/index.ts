@@ -19,6 +19,9 @@ export type { BadgeProps } from "./components/Badge";
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
 
+export { ConfigCard } from "./components/ConfigCard";
+export type { ConfigCardProps } from "./components/ConfigCard";
+
 export { Skeleton, SkeletonText, SkeletonCard } from "./components/Skeleton";
 
 export { Avatar } from "./components/Avatar";
