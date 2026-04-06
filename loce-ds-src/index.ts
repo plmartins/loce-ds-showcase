@@ -8,6 +8,9 @@ export type { InputProps } from "./components/Input";
 export { Select } from "./components/Select";
 export type { SelectProps, Option } from "./components/Select";
 
+export { ComboBox } from "./components/ComboBox";
+export type { ComboBoxProps, ComboBoxOption } from "./components/ComboBox";
+
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 

@@ -12,6 +12,7 @@ import {
   MultiSelect,
   ExpandableTextarea,
   ImageUpload,
+  ComboBox,
   Card,
   CardHeader,
   CardTitle,
@@ -218,6 +219,11 @@ export default function App() {
     "Este texto pode ser expandido em um modal para editar com mais espaço."
   );
   const [imageVal, setImageVal] = useState("");
+  const [comboVal, setComboVal] = useState("");
+  const [comboLabel, setComboLabel] = useState("");
+  const [comboImage, setComboImage] = useState("");
+  const [comboQuery, setComboQuery] = useState("");
+  const [comboLoading, setComboLoading] = useState(false);
 
   // Layout states
   const [tabVal, setTabVal] = useState("geral");
@@ -311,7 +317,7 @@ export default function App() {
             Loce Design System
           </Text>
           <Text variant="subtitle" className="mt-3 text-neutral-500">
-            44 componentes React com Tailwind CSS v4. Plug and play, dark mode,
+            45 componentes React com Tailwind CSS v4. Plug and play, dark mode,
             whitelabel-ready.
           </Text>
           <div className="flex items-center gap-3 mt-6">
@@ -326,7 +332,7 @@ export default function App() {
       {/* Content */}
       <main className="max-w-6xl mx-auto px-6 pb-24 flex flex-col gap-24">
         {/* ==================== FORMS ==================== */}
-        <Section id="forms" title="Formularios" count={12}>
+        <Section id="forms" title="Formularios" count={13}>
           {/* Button */}
           <Demo
             title="Button"
@@ -569,6 +575,45 @@ export default function App() {
                 onChange={setExpandVal}
                 maxLength={500}
                 modalTitle="Editar descricao"
+              />
+            </div>
+          </Demo>
+
+          {/* ComboBox */}
+          <Demo
+            title="ComboBox"
+            description="Select com busca, single-select. Parent controla options e busca (async-ready)"
+          >
+            <div className="max-w-md">
+              <ComboBox
+                label="Produto"
+                placeholder="Buscar produto..."
+                value={comboVal}
+                displayLabel={comboLabel}
+                displayImage={comboImage}
+                loading={comboLoading}
+                options={[
+                  { value: "1", label: "Esmalte Vermelho Classic", image: "https://picsum.photos/seed/p1/80/80", description: "R$ 12,90" },
+                  { value: "2", label: "Kit Unhas Gel Premium", image: "https://picsum.photos/seed/p2/80/80", description: "R$ 89,90" },
+                  { value: "3", label: "Base Fortalecedora", image: "https://picsum.photos/seed/p3/80/80", description: "R$ 24,50" },
+                  { value: "4", label: "Lixa Profissional 100/180", description: "R$ 5,90" },
+                  { value: "5", label: "Removedor de Cuticulas", description: "R$ 15,00" },
+                ].filter((o) => !comboQuery || o.label.toLowerCase().includes(comboQuery.toLowerCase()))}
+                onSearch={(q) => {
+                  setComboQuery(q);
+                  setComboLoading(true);
+                  setTimeout(() => setComboLoading(false), 300);
+                }}
+                onChange={(val, opt) => {
+                  setComboVal(val);
+                  setComboLabel(opt.label);
+                  setComboImage(opt.image || "");
+                }}
+                onClear={() => {
+                  setComboVal("");
+                  setComboLabel("");
+                  setComboImage("");
+                }}
               />
             </div>
           </Demo>
@@ -1405,7 +1450,7 @@ export default function App() {
         <footer className="border-t border-neutral-200 dark:border-neutral-800 pt-8 mt-8">
           <div className="flex items-center justify-between">
             <Text variant="description" className="text-neutral-400">
-              Loce Design System v0.2.4 — 44 componentes
+              Loce Design System v0.2.4 — 45 componentes
             </Text>
             <div className="flex items-center gap-2">
               <Text variant="description" className="text-neutral-400">
