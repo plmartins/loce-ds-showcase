@@ -10,7 +10,7 @@ function Switch({ className, label, description, ...props }: SwitchProps) {
     const switchEl = (
         <SwitchPrimitive.Root
             className={cn(
-                "peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent shadow-sm transition-all outline-none",
+                "peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent shadow-sm transition-all outline-none cursor-pointer",
                 "data-[state=checked]:bg-loce data-[state=unchecked]:bg-neutral-200 dark:data-[state=unchecked]:bg-neutral-700",
                 "focus-visible:ring-2 focus-visible:ring-loce/30",
                 "disabled:cursor-not-allowed disabled:opacity-50",

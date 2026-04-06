@@ -91,7 +91,7 @@ function Select({
                 ref={triggerRef} type="button" disabled={disabled}
                 onClick={() => { if (!disabled) { updateCoords(); setOpen((prev) => !prev); } }}
                 className={cn(
-                    "w-full flex items-center justify-between gap-2 text-sm font-semibold py-2 px-4 rounded-xl text-left",
+                    "w-full flex items-center justify-between gap-2 text-sm font-semibold py-2 px-4 rounded-xl text-left cursor-pointer",
                     "bg-neutral-100 dark:bg-white/5", "ring-1 ring-neutral-300 dark:ring-neutral-600", "outline-none",
                     "disabled:opacity-50 disabled:ring-0", "transition-shadow duration-100",
                     open && "ring-neutral-400 dark:ring-neutral-500 ring-2",
@@ -116,7 +116,7 @@ function Select({
                         const isSelected = String(option.value) === String(value);
                         return (
                             <button key={option.value} type="button" disabled={option.disabled} onClick={() => handleSelect(option.value)}
-                                className={cn("w-full flex items-center gap-3 px-4 text-left outline-none", option.description ? "py-2.5" : "py-2",
+                                className={cn("w-full flex items-center gap-3 px-4 text-left outline-none cursor-pointer", option.description ? "py-2.5" : "py-2",
                                     "hover:bg-neutral-100 dark:hover:bg-white/5",
                                     isSelected && "text-dark dark:text-light font-semibold bg-neutral-50 dark:bg-white/5",
                                     !isSelected && "text-neutral-700 dark:text-neutral-300",

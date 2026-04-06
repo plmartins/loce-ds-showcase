@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   Input,
@@ -85,7 +85,31 @@ import {
   Share2,
   Layers,
   Send,
+  Palette,
 } from "lucide-react";
+
+// --- Color presets ---
+
+const colorPresets = [
+  { label: "Purple", value: "#ad46ff" },
+  { label: "Blue", value: "#3b82f6" },
+  { label: "Green", value: "#22c55e" },
+  { label: "Orange", value: "#f97316" },
+  { label: "Pink", value: "#ec4899" },
+  { label: "Red", value: "#ef4444" },
+  { label: "Teal", value: "#14b8a6" },
+  { label: "Indigo", value: "#6366f1" },
+];
+
+function getInitialDark(): boolean {
+  const stored = localStorage.getItem("loce-ds-dark");
+  if (stored !== null) return stored === "true";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function getInitialColor(): string {
+  return localStorage.getItem("loce-ds-color") || "#ad46ff";
+}
 
 // --- Helpers ---
 
@@ -128,10 +152,12 @@ function Demo({
   title,
   description,
   children,
+  bare,
 }: {
   title: string;
   description?: string;
   children: React.ReactNode;
+  bare?: boolean;
 }) {
   return (
     <div>
@@ -145,9 +171,13 @@ function Demo({
           </p>
         )}
       </div>
-      <div className="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-white/[0.02] p-6 overflow-hidden">
-        {children}
-      </div>
+      {bare ? (
+        children
+      ) : (
+        <div className="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-white/[0.02] p-6 overflow-hidden">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
@@ -155,7 +185,22 @@ function Demo({
 // --- Main App ---
 
 export default function App() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(getInitialDark);
+  const [brandColor, setBrandColor] = useState(getInitialColor);
+  const [colorPickerOpen, setColorPickerOpen] = useState(false);
+
+  // Apply dark mode on mount and changes
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("loce-ds-dark", String(dark));
+  }, [dark]);
+
+  // Apply brand color
+  useEffect(() => {
+    document.documentElement.style.setProperty("--color-loce", brandColor);
+    document.documentElement.style.setProperty("--color-loceSec", brandColor);
+    localStorage.setItem("loce-ds-color", brandColor);
+  }, [brandColor]);
 
   // Form states
   const [selectVal, setSelectVal] = useState("");
@@ -182,12 +227,7 @@ export default function App() {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const toggleDark = () => {
-    setDark((d) => {
-      document.documentElement.classList.toggle("dark", !d);
-      return !d;
-    });
-  };
+  const toggleDark = () => setDark((d) => !d);
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-[var(--font-dm)] transition-colors">
@@ -219,6 +259,40 @@ export default function App() {
                 </a>
               ))}
             </nav>
+            <div className="relative">
+              <Button variant="ghost" size="icon" onClick={() => setColorPickerOpen((p) => !p)}>
+                <Palette size={18} style={{ color: brandColor }} />
+              </Button>
+              {colorPickerOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setColorPickerOpen(false)} />
+                  <div className="absolute right-0 top-full mt-2 z-50 p-3 rounded-2xl shadow-lg ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-3">
+                    <span className="text-xs font-semibold text-neutral-500 px-1">Cor primaria</span>
+                    <div className="flex gap-2">
+                      {colorPresets.map((c) => (
+                        <button
+                          key={c.value}
+                          type="button"
+                          onClick={() => { setBrandColor(c.value); setColorPickerOpen(false); }}
+                          className="size-7 rounded-full ring-2 ring-offset-2 ring-offset-white dark:ring-offset-neutral-900 transition-all active:scale-90 cursor-pointer"
+                          style={{ background: c.value, ringColor: brandColor === c.value ? c.value : "transparent" }}
+                          title={c.label}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="color"
+                        value={brandColor}
+                        onChange={(e) => setBrandColor(e.target.value)}
+                        className="size-7 rounded-lg cursor-pointer border-0 p-0"
+                      />
+                      <span className="text-xs font-semibold text-neutral-500">{brandColor}</span>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
             <Button variant="ghost" size="icon" onClick={toggleDark}>
               {dark ? <Sun size={18} /> : <Moon size={18} />}
             </Button>
@@ -586,7 +660,7 @@ export default function App() {
             title="ScrollFade"
             description="Container com fade no scroll (top/bottom/both)"
           >
-            <div className="h-40">
+            <div className="h-40 flex flex-col">
               <ScrollFade position="both">
                 <div className="flex flex-col gap-3 p-2">
                   {Array.from({ length: 12 }, (_, i) => (
@@ -824,6 +898,7 @@ export default function App() {
           <Demo
             title="DataTable"
             description="Tabela com sort, mobile cards, actions"
+            bare
           >
             <DataTable
               columns={[
@@ -886,7 +961,7 @@ export default function App() {
           </Demo>
 
           {/* PaginationBar */}
-          <Demo title="PaginationBar" description="Navegacao de paginas">
+          <Demo title="PaginationBar" description="Navegacao de paginas" bare>
             <PaginationBar
               page={page}
               totalPages={10}

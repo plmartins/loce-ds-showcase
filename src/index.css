@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "loce-ds/styles.css";
 
+/* Ensure class-based dark mode works in showcase */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }

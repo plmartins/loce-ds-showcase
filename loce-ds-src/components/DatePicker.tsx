@@ -36,7 +36,7 @@ function DatePicker({ label, value, onChange, placeholder = "Selecione uma data"
         <div className={cn("w-full flex flex-col gap-1", className)}>
             {label && <span className="pl-1 text-xs font-semibold text-neutral-500">{label}</span>}
             <button ref={triggerRef} type="button" disabled={disabled} onClick={() => { updateCoords(); setOpen((p) => !p); }}
-                className={cn("w-full flex items-center gap-2 text-sm font-semibold py-2 px-4 rounded-xl text-left",
+                className={cn("w-full flex items-center gap-2 text-sm font-semibold py-2 px-4 rounded-xl text-left cursor-pointer",
                     "bg-neutral-100 dark:bg-white/5", "ring-1 ring-neutral-300 dark:ring-neutral-600", "outline-none disabled:opacity-50 disabled:ring-0", "transition-shadow duration-100",
                     open && "ring-neutral-400 dark:ring-neutral-500 ring-2", error && "ring-red-400 dark:ring-red-500",
                     value ? "text-neutral-800 dark:text-neutral-100" : "text-neutral-400 dark:text-neutral-500 font-medium"

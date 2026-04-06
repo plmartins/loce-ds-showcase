@@ -12,6 +12,9 @@
 /* Tell Tailwind to scan the DS bundle for utility classes */
 @source "./index.js";
 
+/* Use class-based dark mode (.dark) instead of @media prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── Theme tokens ─── */
 @theme {
     --font-dm: 'DM Sans', sans-serif;
@@ -366,4 +369,10 @@
 }
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
+}
+
+/* ─── Native input dark mode fixes ─── */
+
+.dark input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
