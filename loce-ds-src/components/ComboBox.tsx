@@ -75,14 +75,18 @@ function ComboBox({
         handleClose();
     };
 
+    const debounceRef = useRef<ReturnType<typeof setTimeout>>();
     const handleInputChange = (q: string) => {
         setQuery(q);
-        onSearch?.(q);
         if (!open) {
             updatePosition();
             setOpen(true);
         }
+        clearTimeout(debounceRef.current);
+        debounceRef.current = setTimeout(() => onSearch?.(q), 300);
     };
+
+    useEffect(() => () => clearTimeout(debounceRef.current), []);
 
     useEffect(() => {
         if (!open) return;
