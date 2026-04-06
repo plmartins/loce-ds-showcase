@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import "loce-ds/styles.css";
+
+html {
+  scroll-behavior: smooth;
+}
