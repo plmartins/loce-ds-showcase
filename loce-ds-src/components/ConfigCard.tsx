@@ -14,8 +14,8 @@ function ConfigCard({ icon: Icon, title, description, children, className }: Con
         <div className={cn("rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-white/[0.02] p-6", className)}>
             <div className="flex items-start gap-3 mb-5">
                 {Icon && (
-                    <div className="flex items-center justify-center size-10 rounded-2xl bg-neutral-100 dark:bg-white/5 shrink-0">
-                        <Icon size={20} className="text-neutral-500" />
+                    <div className="flex items-center justify-center size-10 rounded-2xl bg-loce/10 shrink-0">
+                        <Icon size={20} className="text-loce" />
                     </div>
                 )}
                 <div className="flex flex-col gap-0.5 pt-1">
