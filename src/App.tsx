@@ -703,14 +703,6 @@ export default function App() {
                 <Switch label="Responder automaticamente" description="A IA responde mensagens sem intervencao humana" />
                 <Switch label="Gerar sugestoes automaticas" description="Sugere respostas para voce aprovar antes de enviar" />
               </ConfigCard>
-              <ConfigCard
-                icon={Globe}
-                title="SEO"
-                description="Como sua loja aparece no Google"
-              >
-                <Input label="Titulo SEO" placeholder="Titulo da pagina" />
-                <Textarea label="Meta descricao" placeholder="Descricao para mecanismos de busca..." />
-              </ConfigCard>
             </div>
           </Demo>
 
