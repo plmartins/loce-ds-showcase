@@ -38,11 +38,11 @@ function MultiSelect({ label, options, value, onChange, placeholder, addLabel = 
                     <span key={opt.value} className="flex items-center gap-1.5 pl-1 pr-2 py-1 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-600 bg-neutral-50 dark:bg-white/[0.03]">
                         {opt.image ? <Avatar src={opt.image} alt={opt.label} size={22} fallback="initials" name={opt.label} /> : <Avatar alt={opt.label} size={22} fallback="initials" name={opt.label} />}
                         <span className="text-xs font-semibold text-dark dark:text-light">{opt.label}</span>
-                        <button type="button" onClick={() => remove(opt.value)} className="size-4 rounded-xl flex items-center justify-center hover:bg-red-500/20 text-neutral-400 hover:text-red-500 transition-colors"><X size={10} /></button>
+                        <button type="button" onClick={() => remove(opt.value)} className="size-4 rounded-xl flex items-center justify-center hover:bg-red-500/20 text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"><X size={10} /></button>
                     </span>
                 ))}
                 <button type="button" onClick={() => { updateCoords(); setOpen((p) => !p); }}
-                    className="flex items-center gap-1 py-1 px-2.5 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-600 hover:ring-neutral-400 dark:hover:ring-neutral-500 transition-all text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300">
+                    className="flex items-center gap-1 py-1 px-2.5 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-600 hover:ring-neutral-400 dark:hover:ring-neutral-500 transition-all text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 cursor-pointer">
                     <Plus size={12} /><span className="text-[11px] font-semibold">{addLabel}</span>
                 </button>
             </div>
@@ -53,7 +53,7 @@ function MultiSelect({ label, options, value, onChange, placeholder, addLabel = 
                     {options.map((opt) => {
                         const selected = value.includes(opt.value);
                         return (
-                            <button key={opt.value} type="button" onClick={() => toggle(opt.value)} className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-neutral-100 dark:hover:bg-white/5">
+                            <button key={opt.value} type="button" onClick={() => toggle(opt.value)} className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-neutral-100 dark:hover:bg-white/5 cursor-pointer">
                                 <div className={cn("size-4 rounded-md shrink-0 flex items-center justify-center ring-1 transition-all", selected ? "bg-dark dark:bg-light ring-dark dark:ring-light" : "ring-neutral-300 dark:ring-neutral-600")}>
                                     {selected && <Check size={10} className="text-light dark:text-dark" />}
                                 </div>
