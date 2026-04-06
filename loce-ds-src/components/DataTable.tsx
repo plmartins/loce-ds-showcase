@@ -98,7 +98,7 @@ function DataTable<T extends Record<string, any>>({ data, columns, actions = [],
                     </div>
                 ))}
             </div>
-            <div className="hidden md:block rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-700 overflow-hidden">
+            <div className="hidden md:block rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-white/[0.02] overflow-hidden">
                 <Table>
                     <TableHeader>
                         <TableRow className="border-b border-neutral-200 dark:border-neutral-700 hover:bg-transparent">
