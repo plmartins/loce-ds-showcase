@@ -660,18 +660,24 @@ export default function App() {
             title="ScrollFade"
             description="Container com fade no scroll (top/bottom/both)"
           >
-            <div className="h-40 flex flex-col">
-              <ScrollFade position="both">
-                <div className="flex flex-col gap-3 p-2">
-                  {Array.from({ length: 12 }, (_, i) => (
+            <div className="h-64 flex flex-col">
+              <ScrollFade position="both" className="scrollbar-hide">
+                <div className="flex flex-col gap-2 p-1">
+                  {Array.from({ length: 20 }, (_, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-neutral-50 dark:bg-white/[0.03]"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-neutral-50 dark:bg-white/[0.03] ring-1 ring-neutral-200/50 dark:ring-neutral-700/50"
                     >
-                      <div className="size-8 rounded-xl bg-neutral-200 dark:bg-neutral-700" />
-                      <span className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">
-                        Item {i + 1} da lista com scroll fade
-                      </span>
+                      <Avatar alt={`User ${i + 1}`} name={`Usuario ${i + 1}`} size={32} fallback="initials" />
+                      <div className="flex-1 min-w-0">
+                        <span className="text-sm font-semibold text-dark dark:text-light">
+                          Notificacao {i + 1}
+                        </span>
+                        <span className="block text-xs font-medium text-neutral-500 truncate">
+                          Descricao do item da lista com scroll fade
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-semibold text-neutral-400 shrink-0">{i + 1}m</span>
                     </div>
                   ))}
                 </div>

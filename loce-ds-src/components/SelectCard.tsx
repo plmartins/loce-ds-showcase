@@ -13,7 +13,7 @@ function SelectCard<T extends string = string>({ options, value, onChange, colum
                 if (layout === "vertical") {
                     return (
                         <button key={option.value} type="button" onClick={() => onChange?.(option.value)}
-                            className={cn("flex flex-col items-center gap-2 p-4 rounded-2xl ring-2 text-center transition-all duration-100 active:scale-[0.98]",
+                            className={cn("flex flex-col items-center gap-2 p-4 rounded-2xl ring-2 text-center transition-all duration-100 active:scale-[0.98] cursor-pointer",
                                 isSelected ? "ring-loce bg-loce/5 dark:bg-loce/10" : "ring-neutral-300 dark:ring-neutral-600 bg-white dark:bg-white/[0.02] hover:ring-neutral-400 dark:hover:ring-neutral-500"
                             )}>
                             {option.icon && <div className={cn("flex items-center justify-center size-10 rounded-2xl shrink-0 transition-colors", isSelected ? "bg-loce/10 text-loce" : "bg-neutral-100 dark:bg-white/5 text-neutral-400")}>{option.icon}</div>}
@@ -24,7 +24,7 @@ function SelectCard<T extends string = string>({ options, value, onChange, colum
                 }
                 return (
                     <button key={option.value} type="button" onClick={() => onChange?.(option.value)}
-                        className={cn("flex items-center gap-3 p-4 rounded-2xl ring-2 text-left transition-all duration-100 active:scale-[0.98]",
+                        className={cn("flex items-center gap-3 p-4 rounded-2xl ring-2 text-left transition-all duration-100 active:scale-[0.98] cursor-pointer",
                             isSelected ? "ring-loce bg-loce/5 dark:bg-loce/10" : "ring-neutral-300 dark:ring-neutral-600 bg-white dark:bg-white/[0.02] hover:ring-neutral-400 dark:hover:ring-neutral-500"
                         )}>
                         {option.icon && <div className={cn("flex items-center justify-center size-10 rounded-2xl shrink-0 transition-colors", isSelected ? "bg-loce/10 text-loce" : "bg-neutral-100 dark:bg-white/5 text-neutral-400")}>{option.icon}</div>}
