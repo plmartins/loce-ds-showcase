@@ -234,7 +234,7 @@ export default function App() {
   const toggleDark = () => setDark((d) => !d);
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-[var(--font-dm)] transition-colors">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 font-dm transition-colors">
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/80 dark:bg-neutral-950/80 border-b border-neutral-200 dark:border-neutral-800">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
